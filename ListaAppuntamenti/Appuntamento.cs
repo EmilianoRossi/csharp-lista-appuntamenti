@@ -21,9 +21,18 @@ namespace ListaAppuntamenti
 
             this.dataAppuntamento = dataAppuntamento;
             this.nomeAppuntamento = nomeAppuntamento;   
-            this.localitaAppuntamento = localitaAppuntamento;   
-           
+            this.localitaAppuntamento = localitaAppuntamento; 
+            try
+            {
+                ControllaEccezioni();
+            }
+            catch (Exception ex)
+            {
 
+                Console.WriteLine(ex.Message);
+
+            }
+            
         }
         //Get e set
 
@@ -83,6 +92,18 @@ namespace ListaAppuntamenti
 
                 Console.WriteLine("La data inserita è quella attuale");
                 return this.dataAppuntamento;
+
+            }
+
+        }
+
+        public void ControllaEccezioni()
+        {
+
+            if (dataAppuntamento < dataAttuale)
+            {
+
+                throw new Exception("Data inserita è nel passato , errore");
 
             }
 
