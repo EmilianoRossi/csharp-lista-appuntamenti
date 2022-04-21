@@ -9,15 +9,15 @@ Console.WriteLine("-------------------------------------------------------------
 int numeroAppuntamentiDaInserire = int.Parse(Console.ReadLine());
 
 //istanzio tanti oggetti quanti n numeri inserisce l'utente
-for(int i = 0; i < numeroAppuntamentiDaInserire; i++)
+for (int i = 0; i < numeroAppuntamentiDaInserire; i++)
 {
     int numeroEvento = i + 1;
     Console.WriteLine("Dati evento numero: " + numeroEvento);
 
     //Inserimento dati
     Console.WriteLine("Inserisci data appuntamento");
-    string dataAppuntamento = Console.ReadLine(); 
-       
+    string dataAppuntamento = Console.ReadLine();
+
     DateTime dataUtente = DateTime.Parse(dataAppuntamento);
 
     Console.WriteLine("Inserisci nome appuntamento");
@@ -30,7 +30,7 @@ for(int i = 0; i < numeroAppuntamentiDaInserire; i++)
     Console.Clear();
 
     //Istanzio oggetto
-    Appuntamento nuovoAppuntamento = new Appuntamento(dataUtente , nomeAppuntamento , luogoAppuntamento);
+    Appuntamento nuovoAppuntamento = new Appuntamento(dataUtente, nomeAppuntamento, luogoAppuntamento);
     listaAppuntamenti.Add(nuovoAppuntamento);
 }
 
@@ -47,7 +47,7 @@ Console.WriteLine("-------------Questa è la lista dei tuoi appuntamenti--------
 foreach (Appuntamento elementoAppuntamenti in listaAppuntamenti)
 {
     int j = 0;
-    Console.WriteLine("Appuntamento n° " + (j + 1) + " : " +elementoAppuntamenti.GetNomeAppuntamento());
+    Console.WriteLine("Appuntamento n° " + (j += 1) + " : " + elementoAppuntamenti.GetNomeAppuntamento());
 
 }
 Console.WriteLine("Vuoi cambiare la data dell'appuntamento?");
@@ -62,22 +62,28 @@ switch (risposta)
         Console.WriteLine("Inserisci nuova data");
         try
         {
+            
             DateTime nuovaData = DateTime.Parse(Console.ReadLine());
             for (int i = 0; i < listaAppuntamenti.Count; i++)
             {
+            if(numeroAppuntamentoDaCambiare -1 == i)
+                {
 
-                listaAppuntamenti[i].CambiaData(nuovaData);
-                listaAppuntamenti[i].ToString();
+                    listaAppuntamenti[i].CambiaData(nuovaData);
+                    listaAppuntamenti[i].ToString();
+
+                }
+                
             }
 
         }
-        catch(InvalidOperationException ex)
+        catch (InvalidOperationException ex)
         {
 
             Console.WriteLine(ex.Message);
         }
-        
-     
+
+
         break;
 
     case "no":
