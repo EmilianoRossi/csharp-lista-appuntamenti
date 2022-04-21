@@ -50,7 +50,7 @@ foreach (Appuntamento elementoAppuntamenti in listaAppuntamenti)
     Console.WriteLine("Appuntamento n° " + (j + 1) + " : " + elementoAppuntamenti.GetNomeAppuntamento());
 
 }
-Console.WriteLine("Vuoi cambiare la data dell'appuntamento?");
+Console.WriteLine("Vuoi modificare il tuo appuntamento?");
 string risposta = Console.ReadLine();
 
 
@@ -73,8 +73,14 @@ switch (risposta)
                     for (int i = 0; i < listaAppuntamenti.Count; i++)
                     {
 
-                        listaAppuntamenti[i].CambiaData(nuovaData);
-                        listaAppuntamenti[i].ToString();
+                        if (numeroAppuntamentoDaCambiare - 1 == i)
+                        {
+
+                            listaAppuntamenti[i].CambiaData(nuovaData);
+                            listaAppuntamenti[i].ToString();
+
+                        }
+
                     }
 
                 }
@@ -89,28 +95,39 @@ switch (risposta)
 
             case "luogo":
                 Console.WriteLine("Di quale appuntamento vuoi cambiare il luogo? inserisci il numero dell'appuntamento che vuoi cambiare");
-                string luogoDaCambiare = Console.ReadLine();
+                numeroAppuntamentoDaCambiare = int.Parse(Console.ReadLine());
                 Console.WriteLine("Inserisci nuova luogo");
 
                 string nuovoLuogo = Console.ReadLine();
                 for (int i = 0; i < listaAppuntamenti.Count; i++)
                 {
 
-                    listaAppuntamenti[i].CambiaLocalita(nuovoLuogo);
-                    listaAppuntamenti[i].ToString();
+                    if (numeroAppuntamentoDaCambiare - 1 == i)
+                    {
+
+                        listaAppuntamenti[i].CambiaLocalita(nuovoLuogo);
+                        listaAppuntamenti[i].ToString();
+
+                    }
+
                 }
                 break;
             case "nome":
                 Console.WriteLine("Di quale appuntamento vuoi cambiare il nome? inserisci il numero dell'appuntamento che vuoi cambiare");
+                numeroAppuntamentoDaCambiare = int.Parse(Console.ReadLine());
                 string nomeDaCambiare = Console.ReadLine();
                 Console.WriteLine("Inserisci nuova nome");
 
                 string nuovoNome = Console.ReadLine();
                 for (int i = 0; i < listaAppuntamenti.Count; i++)
                 {
+                    if (numeroAppuntamentoDaCambiare - 1 == i)
+                    {
 
-                    listaAppuntamenti[i].CambiaNome(nuovoNome);
-                    listaAppuntamenti[i].ToString();
+                        listaAppuntamenti[i].CambiaNome(nuovoNome);
+                        listaAppuntamenti[i].ToString();
+
+                    }
                 }
                 break;
 
