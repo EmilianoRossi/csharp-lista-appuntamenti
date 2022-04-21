@@ -16,7 +16,8 @@ for(int i = 0; i < numeroAppuntamentiDaInserire; i++)
 
     //Inserimento dati
     Console.WriteLine("Inserisci data appuntamento");
-    string dataAppuntamento = Console.ReadLine();
+    string dataAppuntamento = Console.ReadLine(); 
+       
     DateTime dataUtente = DateTime.Parse(dataAppuntamento);
 
     Console.WriteLine("Inserisci nome appuntamento");
@@ -59,13 +60,23 @@ switch (risposta)
         Console.WriteLine("Di quale appuntamento vuoi cambiare la data? inserisci il numero dell'appuntamento che vuoi cambiare");
         int numeroAppuntamentoDaCambiare = int.Parse(Console.ReadLine());
         Console.WriteLine("Inserisci nuova data");
-        DateTime nuovaData = DateTime.Parse(Console.ReadLine());
-        for(int i = 0; i < listaAppuntamenti.Count; i++)
+        try
         {
-          
-            listaAppuntamenti[i].CambiaData(nuovaData);
-            listaAppuntamenti[i].ToString();
+            DateTime nuovaData = DateTime.Parse(Console.ReadLine());
+            for (int i = 0; i < listaAppuntamenti.Count; i++)
+            {
+
+                listaAppuntamenti[i].CambiaData(nuovaData);
+                listaAppuntamenti[i].ToString();
+            }
+
         }
+        catch(InvalidOperationException ex)
+        {
+
+            Console.WriteLine(ex.Message);
+        }
+        
      
         break;
 
