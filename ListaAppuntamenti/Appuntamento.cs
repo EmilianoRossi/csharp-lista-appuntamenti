@@ -10,9 +10,10 @@ namespace ListaAppuntamenti
     internal class Appuntamento
     {
         //Attributi
-        public DateTime dataAppuntamento = new DateTime();
-        public string nomeAppuntamento;
-        public string localitaAppuntamento;
+        private protected DateTime dataAppuntamento = new DateTime();
+        private protected string nomeAppuntamento;
+        private protected string localitaAppuntamento;
+        private protected DateTime dataAttuale = DateTime.Now;
 
         //costruttore
         public Appuntamento(DateTime dataAppuntamento , string nomeAppuntamento , string localitaAppuntamento)
@@ -20,7 +21,8 @@ namespace ListaAppuntamenti
 
             this.dataAppuntamento = dataAppuntamento;
             this.nomeAppuntamento = nomeAppuntamento;   
-            this.localitaAppuntamento = localitaAppuntamento;    
+            this.localitaAppuntamento = localitaAppuntamento;   
+           
 
         }
         //Get e set
@@ -45,6 +47,7 @@ namespace ListaAppuntamenti
 
         }
 
+        //override metodo tostring per stampare dati
         public virtual void ToString()
         {
 
@@ -54,6 +57,34 @@ namespace ListaAppuntamenti
             Console.WriteLine("Nome appuntamento: " + nomeAppuntamento);
             Console.WriteLine("Luogo appuntamento: " + localitaAppuntamento);
             Console.WriteLine("-----------------------------------------------");
+
+        }
+
+        public DateTime CambiaData(DateTime dataUtente)
+        {
+
+            if (dataUtente < dataAttuale)
+            {
+
+                throw new InvalidOperationException("La data inserita è nel passato");
+                return this.dataAppuntamento;
+
+            }
+            else if (dataUtente > dataAttuale)
+            {
+
+                this.dataAppuntamento = dataUtente;
+                Console.WriteLine("La data inserita è stata aggiornata correttamente");
+                return this.dataAppuntamento;
+
+            }
+            else
+            {
+
+                Console.WriteLine("La data inserita è quella attuale");
+                return this.dataAppuntamento;
+
+            }
 
         }
 
